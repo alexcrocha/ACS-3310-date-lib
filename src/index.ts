@@ -80,6 +80,38 @@ export default class D {
     return this._format(mask, dateTimeValues);
   }
 
+  when(): string {
+    const now = new Date();
+
+    const isFuture = this._date.getTime() > now.getTime();
+
+    const yearsDifference = Math.abs(this._date.getFullYear() - now.getFullYear());
+    const monthsDifference = Math.abs(this._date.getMonth() - now.getMonth());
+    const daysDifference = Math.abs(this._date.getDate() - now.getDate());
+
+    if (yearsDifference === 0 && monthsDifference === 0 && daysDifference === 0) {
+      return 'today';
+    }
+
+    let description = '';
+
+    if (yearsDifference !== 0) {
+      description += `${yearsDifference} years `;
+    }
+
+    if (monthsDifference !== 0) {
+      description += `${monthsDifference} months `;
+    }
+
+    if (daysDifference !== 0 && yearsDifference === 0) {
+      description += `${daysDifference} days `;
+    }
+
+    description = description.trim() + (isFuture ? ' from now' : ' ago');
+
+    return description;
+  }
+
   private getOrdinalSuffix(date: number): string {
     if (date === 11 || date === 12 || date === 13) {
       return 'th';

@@ -110,3 +110,40 @@ describe('D format', () => {
     expect(dFormat.format('Y-M-D h:I:S')).toBe('2017-January-02 3:04:05');
   });
 });
+
+describe('when() method', () => {
+  test('today', () => {
+    const d = new D();
+    expect(d.when()).toBe('today');
+  });
+
+  test('days from now', () => {
+    const d = new D(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() + 3);
+    expect(d.when()).toBe('3 days from now');
+  });
+
+  test('days ago', () => {
+    const d = new D(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() - 3);
+    expect(d.when()).toBe('3 days ago');
+  });
+
+  test('months ago', () => {
+    const d = new D(new Date().getFullYear(), new Date().getMonth() - 6, new Date().getDate());
+    expect(d.when()).toBe('6 months ago');
+  });
+
+  test('months from now', () => {
+    const d = new D(new Date().getFullYear(), new Date().getMonth() + 3, new Date().getDate());
+    expect(d.when()).toBe('3 months from now');
+  });
+
+  test('years from now', () => {
+    const d = new D(new Date().getFullYear() + 5, new Date().getMonth(), new Date().getDate());
+    expect(d.when()).toBe('5 years from now');
+  });
+
+  test('years ago', () => {
+    const d = new D(new Date().getFullYear() - 5, new Date().getMonth(), new Date().getDate());
+    expect(d.when()).toBe('5 years ago');
+  });
+});
