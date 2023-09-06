@@ -13,7 +13,6 @@ describe('D constructor', () => {
     expect(d4).toBeInstanceOf(D);
     expect(() => { new D({}) }).toThrowError();
   });
-
 });
 
 describe('D getters', () => {
@@ -85,5 +84,29 @@ describe('D getters', () => {
     expect(d2.secs).toBe(0);
     expect(d3.secs).toBe(new Date().getSeconds());
     expect(d4.secs).toBe(21);
+  });
+});
+
+describe('D format', () => {
+  const dFormat = new D(2017, 0, 2, 3, 4, 5)
+
+  test('D.format()', () => {
+    expect(dFormat.format()).toBe('2017 January 02');
+  });
+
+  test('D.format("y/m/d")', () => {
+    expect(dFormat.format('y/m/d')).toBe('17/Jan/2');
+  });
+
+  test('D.format("H:I:S")', () => {
+    expect(dFormat.format('H:I:S')).toBe('03:04:05');
+  });
+
+  test('D.format("h:i:s")', () => {
+    expect(dFormat.format('h:i:s')).toBe('3:4:5');
+  });
+
+  test('D.format("Y-M-D h:I:S")', () => {
+    expect(dFormat.format('Y-M-D h:I:S')).toBe('2017-January-02 3:04:05');
   });
 });

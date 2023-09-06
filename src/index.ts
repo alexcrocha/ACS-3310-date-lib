@@ -57,4 +57,47 @@ export default class D {
   get secs(): number {
     return this._date.getSeconds();
   }
+
+  format(mask: string = 'Y M D'): string {
+    const dateTimeValues = {
+      'Y': this.year,
+      'y': this.yr,
+      'M': this.month,
+      'm': this.mon,
+      'D': this.date.toString().padStart(2, '0'),
+      'd': this.date,
+      'L': this.day,
+      'l': this.dy,
+      '#': this.date + this.getOrdinalSuffix(this.date),
+      'H': this.hours.toString().padStart(2, '0'),
+      'h': this.hours,
+      'I': this.mins.toString().padStart(2, '0'),
+      'i': this.mins,
+      'S': this.secs.toString().padStart(2, '0'),
+      's': this.secs,
+    };
+
+    return this._format(mask, dateTimeValues);
+  }
+
+  private getOrdinalSuffix(date: number): string {
+    if (date === 11 || date === 12 || date === 13) {
+      return 'th';
+    }
+
+    switch (date % 10) {
+      case 1:
+        return 'st';
+      case 2:
+        return 'nd';
+      case 3:
+        return 'rd';
+      default:
+        return 'th';
+    }
+  }
+
+  private _format(mask: string, dateTimeValues: { [key: string]: string | number }): string {
+    return mask.replace(/([YyMmDdLl#HhIiSs])/g, (character) => dateTimeValues[character]?.toString() || '');
+  }
 }
