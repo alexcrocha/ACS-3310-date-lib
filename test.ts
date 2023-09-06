@@ -5,6 +5,17 @@ const d2 = new D('01/01/2020');
 const d3 = new D(new Date());
 const d4 = new D(2020, 1, 1, 23, 22, 21);
 
+describe('D constructor', () => {
+  test('D()', () => {
+    expect(d).toBeInstanceOf(D);
+    expect(d2).toBeInstanceOf(D);
+    expect(d3).toBeInstanceOf(D);
+    expect(d4).toBeInstanceOf(D);
+    expect(() => { new D({}) }).toThrowError();
+  });
+
+});
+
 describe('D getters', () => {
   test('D.year', () => {
     expect(d.year).toBe(new Date().getFullYear());
