@@ -109,6 +109,23 @@ describe('D format', () => {
   test('D.format("Y-M-D h:I:S")', () => {
     expect(dFormat.format('Y-M-D h:I:S')).toBe('2017-January-02 3:04:05');
   });
+
+  test('D.format("L #")', () => {
+    expect(dFormat.format('L #')).toBe('Monday 2nd');
+  });
+
+  test('D.format("D/M/Y")', () => {
+    expect(dFormat.format('D/M/Y')).toBe('02/January/2017');
+  });
+
+  test('D.format("Y-Q-D")', () => {
+    expect(dFormat.format('Y-Q-D')).toBe('2017-Q-02');
+  });
+
+  test('D.format("")', () => {
+    expect(dFormat.format('')).toBe('');
+  });
+
 });
 
 describe('when() method', () => {
