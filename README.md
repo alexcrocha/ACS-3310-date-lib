@@ -7,7 +7,7 @@ This library provides a simplified and more convenient way to work with JavaScri
 - [Installation](#installation)
 - [Importing](#importing)
 - [Usage](#usage)
-- [API](#api)
+
 
 ## Installation
 
@@ -34,14 +34,6 @@ const d3 = new D(new Date());    // Initialize with a Date object
 const d4 = new D(2020, 1, 1, 23, 22, 21); // Initialize with individual date and time components
 ```
 
-#### Error Handling
-
-If the constructor is given an invalid argument, it will throw an error:
-
-```javascript
-new D({});  // Throws an error
-```
-
 ### Getters
 
 The library provides a number of getters to easily access various date components:
@@ -60,6 +52,7 @@ The library provides a number of getters to easily access various date component
 ### Formatting
 
 Formatting Characters
+
 - `'Y'`: 2019 (Year full)
 - `'y'`: 19 (Year short)
 - `'M'`: July (Month full)
